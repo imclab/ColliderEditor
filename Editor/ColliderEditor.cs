@@ -87,7 +87,7 @@ public abstract class ColliderEditor : Editor {
 		SoftParent (fillTrans, rootTrans);
 		
 		if (uniformScale) {
-			float l = fillTrans.localScale.LargestComponent ();
+			float l = LargestComponent (fillTrans.localScale);
 			fillTrans.localScale = new Vector3 (l, l, l);
 		}
 	}
@@ -128,7 +128,7 @@ public abstract class ColliderEditor : Editor {
 //				trans.position.y * trans.localScale.y,
 //				trans.position.z * trans.localScale.z
 //				);
-//			float s = trans.localScale.LargestComponent ();
+//			float s = LargestComponent (fillTrans.localScale);
 //			m = Matrix4x4.TRS (pos, trans.rotation, new Vector3 (s, s, s));
 //		}
 //		else {
@@ -168,7 +168,7 @@ public abstract class ColliderEditor : Editor {
 		// TRS
 		child.position = parent.rotation * ColliderEditorUtilities.MultiplyComponents (offset, scale) + parent.position;
 		child.rotation = parent.rotation; // FIXME need to add the original rotation
-		child.localScale = MultiplyComponents (child.localScale, parent.localScale);
+		child.localScale = ColliderEditorUtilities.MultiplyComponents (child.localScale, parent.localScale);
 	}
 	
 }
