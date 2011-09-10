@@ -87,7 +87,7 @@ public abstract class ColliderEditor : Editor {
 		SoftParent (fillTrans, rootTrans);
 		
 		if (uniformScale) {
-			float l = LargestComponent (fillTrans.localScale);
+			float l = ColliderEditorUtilities.LargestComponent (fillTrans.localScale);
 			fillTrans.localScale = new Vector3 (l, l, l);
 		}
 	}
@@ -128,7 +128,7 @@ public abstract class ColliderEditor : Editor {
 //				trans.position.y * trans.localScale.y,
 //				trans.position.z * trans.localScale.z
 //				);
-//			float s = LargestComponent (fillTrans.localScale);
+//			float s = ColliderEditorUtilities.LargestComponent (fillTrans.localScale);
 //			m = Matrix4x4.TRS (pos, trans.rotation, new Vector3 (s, s, s));
 //		}
 //		else {
