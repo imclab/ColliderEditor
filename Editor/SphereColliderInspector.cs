@@ -33,7 +33,7 @@ public class SphereColliderInspector : ColliderEditor {
 		
 		Transform trans = t.transform;
 		
-		float scale = trans.localScale.LargestComponent ();
+		float scale = ColliderEditorUtilities.LargestComponent (trans.localScale);
 		
 		// Center control
 		Vector3 tempCenter = MoveHandle (t.center);

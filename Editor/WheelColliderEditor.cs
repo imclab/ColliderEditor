@@ -20,7 +20,7 @@ public class WheelColliderEditor : ColliderEditor {
 		Handles.color = selectedOutline;
 		
 		// Radius
-		float scale = trans.localScale.LargestComponent ();
+		float scale = ColliderEditorUtilities.LargestComponent (trans.localScale);
 		Vector3 control = ScaleHandle (t.center + trans.position + new Vector3 (0, t.radius, 0));
 		float tempRadius = ((control - t.center) / scale).y;
 		

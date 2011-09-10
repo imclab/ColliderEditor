@@ -84,7 +84,7 @@ public abstract class ColliderEditor : Editor {
 		// Enlarge scale slightly to avoid z-fighting
 		fillTrans.localScale = size * 1.001f;
 		
-		fillTrans.SoftParent (rootTrans);
+		SoftParent (fillTrans, rootTrans);
 		
 		if (uniformScale) {
 			float l = fillTrans.localScale.LargestComponent ();
@@ -157,6 +157,18 @@ public abstract class ColliderEditor : Editor {
 	#endregion
 	
 	
-
+	/// <summary>
+	/// Apply a transformation resembling a parenting relationship without setting up an actual parenting hierarchy
+	/// </summary>
+	private void SoftParent (Transform child, Transform parent)
+	{
+		Vector3 offset = child.position - parent.position;
+		Vector3 scale = parent.localScale;
+		
+		// TRS
+		child.position = parent.rotation * ColliderEditorUtilities.MultiplyComponents (offset, scale) + parent.position;
+		child.rotation = parent.rotation; // FIXME need to add the original rotation
+		child.localScale = MultiplyComponents (child.localScale, parent.localScale);
+	}
 	
 }
